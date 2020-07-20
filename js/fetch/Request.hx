@@ -1,7 +1,9 @@
 package js.fetch;
-
+import js.Stream;
+import js.lib.*;
+import js.html.*;
 typedef RequestInit = {
-	var ?body : haxe.extern.EitherType<Blob,haxe.extern.EitherType<haxe.extern.EitherType<js.lib.ArrayBufferView,js.lib.ArrayBuffer>,haxe.extern.EitherType<FormData,haxe.extern.EitherType<URLSearchParams,String>>>>;
+	var ?body : haxe.extern.EitherType<Blob,haxe.extern.EitherType<haxe.extern.EitherType<js.lib.ArrayBufferView,js.lib.ArrayBuffer>,haxe.extern.EitherType<FormData,haxe.extern.EitherType<URLSearchParams,haxe.extern.EitherType<String, ReadableStream>>>>>;
 	var ?cache : RequestCache;
 	var ?credentials : RequestCredentials;
 	var ?headers : haxe.extern.EitherType<Headers,haxe.extern.EitherType<Array<Array<String>>,haxe.DynamicAccess<String>>>;
@@ -19,7 +21,7 @@ extern class Request {
 
 
 
-    // var body(default,null)
+    var body(default,null):ReadableStream;
 	/**
 		Contains the request's method (`GET`, `POST`, etc.)
 	**/

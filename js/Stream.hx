@@ -71,7 +71,7 @@ extern class ReadableStream {
 	var locked(default, null):Bool;
 	function cancel(?reason:String):Promise<Void>;
 	@:overload(function():ReadableStreamDefaultReader {})
-	function getReader(?cfg:{var mode:String;}):ReadableStreamBYOBReader;
+	function getReader(cfg:{var mode:String;}):ReadableStreamBYOBReader;
 	function pipeThrough<T>(transform:ReadableWritablePair, ?options:PipeOptions):ReadableStream;
 	function pipeTo(dest:WritableStream, ?options:PipeOptions):Promise<Void>;
 	function tee():Array<ReadableStream>;
@@ -106,7 +106,7 @@ extern class ReadableStreamDefaultReader {
 
 	var closed(default, null):Promise<Void>;
 	function cancel(?reason:String):Promise<Void>;
-	function read():Promise<ReadResult<String>>;
+	function read():Promise<ReadResult<Uint8Array>>;
 	function releaseLock():Void;
 }
 

@@ -1,5 +1,5 @@
 {
-	"name": "hxjs-http2-fetch",
+	"name": "hxjs-http2",
 	"description": "Haxe externs for enabling Http/2 in client-side JS via fetch",
 	"classPath": ".",
 	"dependencies": {
