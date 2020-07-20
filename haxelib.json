@@ -1,0 +1,20 @@
+{
+	"name": "hxjs-http2-fetch",
+	"description": "Haxe externs for enabling Http/2 in client-side JS via fetch",
+	"classPath": ".",
+	"dependencies": {
+	},
+	"url": "http://github.com/brave-pi/hxjs-http2",
+	"contributors": [
+		"piboistudios",
+		"PhilipHayes"
+	],
+	"version": "0.0.0",
+	"releasenote": "Initial release.",
+	"tags": [
+		"js",
+		"http2",
+		"browser"
+	],
+	"license": "MIT"
+}

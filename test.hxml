@@ -1,0 +1,6 @@
+--library tink_unittest
+--library bp_test_utils
+-cp .
+-cp test
+-main RunTests
+--js out.js
