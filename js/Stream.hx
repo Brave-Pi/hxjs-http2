@@ -43,11 +43,11 @@ extern class ReadableByteStreamController {
 
 typedef UnderlyingByteSource = {
     @:optional
-	var start:ReadableByteStreamController->Promise<Void>;
+	var start:ReadableByteStreamController->Promise<Dynamic>;
 	@:optional
-	var pull:ReadableByteStreamController->Promise<Void>;
+	var pull:ReadableByteStreamController->Promise<Dynamic>;
 	@:optional
-	var cancel:String->Promise<Void>;
+	var cancel:String->Promise<Dynamic>;
 	@:optional
 	var type:String;
 	@:optional
@@ -56,11 +56,11 @@ typedef UnderlyingByteSource = {
 
 typedef UnderlyingSource = {
 	@:optional
-	var start:ReadableStreamDefaultController->Promise<Void>;
+	var start:ReadableStreamDefaultController->Promise<Dynamic>;
 	@:optional
-	var pull:ReadableStreamDefaultController->Promise<Void>;
+	var pull:ReadableStreamDefaultController->Promise<Dynamic>;
 	@:optional
-	var cancel:String->Promise<Void>;
+	var cancel:String->Promise<Dynamic>;
 	@:optional
 	var type:String;
 };@:native("ReadableStream")
@@ -69,11 +69,11 @@ extern class ReadableStream {
 	function new(underlyingSource:UnderlyingByteSource, ?strategy:QueuingStrategy);
 
 	var locked(default, null):Bool;
-	function cancel(?reason:String):Promise<Void>;
+	function cancel(?reason:String):Promise<Dynamic>;
 	@:overload(function():ReadableStreamDefaultReader {})
 	function getReader(cfg:{var mode:String;}):ReadableStreamBYOBReader;
 	function pipeThrough<T>(transform:ReadableWritablePair, ?options:PipeOptions):ReadableStream;
-	function pipeTo(dest:WritableStream, ?options:PipeOptions):Promise<Void>;
+	function pipeTo(dest:WritableStream, ?options:PipeOptions):Promise<Dynamic>;
 	function tee():Array<ReadableStream>;
 }
 
@@ -82,8 +82,8 @@ typedef ReadResult<T> = {value:T, done:Bool}
 extern class ReadableStreamBYOBReader {
 	function new(stream:ReadableStream);
 
-	var closed(default, null):Promise<Void>;
-	function cancel(?reason:String):Promise<Void>;
+	var closed(default, null):Promise<Dynamic>;
+	function cancel(?reason:String):Promise<Dynamic>;
 	function read<T:(js.lib.ArrayBufferView)>(view:T):Promise<ReadResult<T>>;
 	function releaseLock():Void;
 }
@@ -104,8 +104,8 @@ extern class ReadableStreamDefaultController {
 extern class ReadableStreamDefaultReader {
 	function new(stream:ReadableStream);
 
-	var closed(default, null):Promise<Void>;
-	function cancel(?reason:String):Promise<Void>;
+	var closed(default, null):Promise<Dynamic>;
+	function cancel(?reason:String):Promise<Dynamic>;
 	function read():Promise<ReadResult<Uint8Array>>;
 	function releaseLock():Void;
 }
@@ -145,21 +145,21 @@ extern class TransformStreamDefaultController<O> {
 
 typedef UnderlyingSink = {
 	@:optional
-	var start:WritableStreamDefaultController->Promise<Void>;
+	var start:WritableStreamDefaultController->Promise<Dynamic>;
 	@:optional
-	var write:js.lib.ArrayBufferView->WritableStreamDefaultController->Promise<Void>;
+	var write:js.lib.ArrayBufferView->?WritableStreamDefaultController->Promise<Dynamic>;
 	@:optional
-	var close:WritableStreamDefaultController->Promise<Void>;
+	var close:WritableStreamDefaultController->Promise<Dynamic>;
 	@:optional
-	var abort:String->Promise<Void>;
+	var abort:String->Promise<Dynamic>;
 };
 @:native("WritableStream")
 extern class WritableStream {
 	function new(?underlyingSink:UnderlyingSink, ?strategy:QueuingStrategy);
 
 	var locked(default, null):Bool;
-	function abort(?reason:String):Promise<Void>;
-	function close():Promise<Void>;
+	function abort(?reason:String):Promise<Dynamic>;
+	function close():Promise<Dynamic>;
 	function getWriter():WritableStreamDefaultWriter;
 }
 @:native("WritableStreamDefaultController")
@@ -170,11 +170,11 @@ extern class WritableStreamDefaultController {
 extern class WritableStreamDefaultWriter {
 	function new(stream:WritableStream);
 
-	var closed(default, null):Promise<Void>;
+	var closed(default, null):Promise<Dynamic>;
 	var desiredSize(default, null):Null<Float>;
-	var ready(default, null):Promise<Void>;
-	function abort(?reason:String):Promise<Void>;
-	function close():Promise<Void>;
+	var ready(default, null):Promise<Dynamic>;
+	function abort(?reason:String):Promise<Dynamic>;
+	function close():Promise<Dynamic>;
 	function releaseLock():Void;
-	function write(chunk:js.lib.ArrayBufferView):Promise<Void>;
+	function write(chunk:js.lib.ArrayBufferView):Promise<Dynamic>;
 }
